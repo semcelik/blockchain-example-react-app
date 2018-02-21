@@ -1,34 +1,60 @@
 import * as React from "react";
-import blockchainService from "../../blockchainService";
+import { connect } from 'react-redux'
+import { addNewBlock } from "../../blockchainService";
 import BlockchainTable from "./BlockchainTable";
+import { Button, Col, Input, Row } from "antd";
+import { addBlock } from "./actions";
+import { DIFFICULTY } from "./constants";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    this.onClick = this.onClick.bind(this);
     this.state = {
-      blocks: [],
+      input: undefined,
     }
   }
 
-  componentDidMount() {
-    const blockchain = new blockchainService(4); // difficuly is manual fow now
-    blockchain.initBlockchain();
-    blockchain.addNewBlock('semihin');
-    blockchain.addNewBlock('ilk');
-    blockchain.addNewBlock('chaini');
+  handleInputChange = (e) => {
     this.setState({
-      blocks: blockchain.getAllBlocks()
+      input: e.target.value,
     });
+  };
+
+  onClick() {
+    const block = addNewBlock(this.props.blocks, this.state.input);
+    this.props.onAddBlock(block);
   }
 
   render() {
-    console.log(this.state.blocks);
     return (<div>
-      <p>difficulty: 5</p>
+      <span>Difficulty: {DIFFICULTY.length}</span>
+      <Row>
+        <Col span={3}>
+          <Input onChange={this.handleInputChange} />
+        </Col>
+        <Col span={2}>
+          <Button onClick={this.onClick}>Add Block</Button>
+        </Col>
+      </Row>
       <BlockchainTable
-      data={this.state.blocks}/>
-      </div>);
+        data={this.props.blocks} />
+    </div>);
   }
 }
 
-export default Main;
+const mapStateToProps = (state) => {
+  return {
+    blocks: state.blocks,
+    addBlockLoading: state.addBlockLoading,
+    error: state.error,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddBlock: (transaction) => dispatch(addBlock(transaction))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

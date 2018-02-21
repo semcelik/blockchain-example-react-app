@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Table } from 'antd';
 
 export const StyledTable = styled(Table)`
+  margin-top: 10px;
   table {
     width: 100%;
   }
@@ -11,9 +12,11 @@ export const StyledTable = styled(Table)`
     background-color: white;
   }
   thead > tr > th {
-    height: 30px;
     color: white;
     background-color: #76dd56;    
+  }
+  .ant-pagination {
+    display: block;
   }
   .ant-pagination-item-active {
     background-color: red;
@@ -21,7 +24,6 @@ export const StyledTable = styled(Table)`
   }
   .ant-pagination-item:hover, .ant-pagination-item:hover a {
     border-color: red;
-    color: red;
   }
   .ant-select-selection:hover {
     border-color: red;
@@ -63,7 +65,6 @@ class BlockchainTable extends React.Component {
     return (<StyledTable
       dataSource={this.props.data}
       columns={this.state.columns}
-      pagination={false}
     />)
   }
 }

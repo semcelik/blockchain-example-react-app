@@ -8,8 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js"
+    "start": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js"
   },
   "author": "semcelik",
   "license": "ISC",
@@ -19,6 +18,9 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "reselect": "^3.0.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   },
