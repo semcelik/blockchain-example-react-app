@@ -1,6 +1,5 @@
 import * as React from "react";
 import { connect } from 'react-redux'
-import { addNewBlock } from "../../blockchainService";
 import BlockchainTable from "./BlockchainTable";
 import { Button, Col, Input, Row } from "antd";
 import { addBlock } from "./actions";
@@ -22,8 +21,7 @@ class Main extends React.Component {
   };
 
   onClick() {
-    const block = addNewBlock(this.props.blocks, this.state.input);
-    this.props.onAddBlock(block);
+    this.props.onAddBlock(this.state.input);
   }
 
   render() {
@@ -38,6 +36,7 @@ class Main extends React.Component {
         </Col>
       </Row>
       <BlockchainTable
+        loading={this.props.addBlockLoading}
         data={this.props.blocks} />
     </div>);
   }

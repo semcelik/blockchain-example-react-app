@@ -65,12 +65,14 @@ class BlockchainTable extends React.Component {
     return (<StyledTable
       dataSource={this.props.data}
       columns={this.state.columns}
+      loading={this.props.loading}
     />)
   }
 }
 
 BlockchainTable.propTypes = {
   data: PropTypes.array,
+  loading: PropTypes.bool,
 };
 
 export default BlockchainTable;
