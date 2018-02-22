@@ -1,4 +1,4 @@
-import { ADD_BLOCK, BLOCK_ADDED, ERROR } from "./constants";
+import { ADD_BLOCK, BLOCK_ADDED, ERROR, LOADING } from "./constants";
 
 const initialState = {
   blocks: [],
@@ -9,10 +9,16 @@ const initialState = {
 function blockchainReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_BLOCK:
-      return Object.assign({}, state, { blocks: [...state.blocks, action.transaction] });
+      return Object.assign({}, state, {
+        addBlockLoading: action.loading,
+      });
     case BLOCK_ADDED:
-      return state
-        .set('addBlockLoading', false);
+      return Object.assign({}, state, {
+        blocks: [...state.blocks, action.block],
+        addBlockLoading: action.loading,
+      });
+    case LOADING:
+      return Object.assign({}, state, { addBlockLoading: action.loading });
     case ERROR:
       return state
         .set('addBlockLoading', false)
