@@ -1,2 +1,80 @@
+################## java
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+!maven-wrapper.jar
+
+################## maven
+target/
+_build/
+bower_components/
+################## idea
+
+*.iml
+*.ipr
+*.iws
 .idea/
-node_modules/
+
+################## eclipse
+
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+################## windows
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+################## mac
+
+.DS_Store
+
+################## sbt
+
+lib_managed/
+src_managed/
+project/boot/
+
+################## node / npm
+
+npm-debug.log
+node
+node_modules
+**/src/dependencies/
+elasticsearch
+
+#Atlassian IDE
+atlassian-ide-plugin.xml
+
+**/dependency-tree
