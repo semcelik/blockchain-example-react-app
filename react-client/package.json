@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^3.0.1",
+    "apisauce": "^0.14.3",
     "gh-pages": "^1.1.0",
     "js-sha256": "^0.8.0",
     "prop-types": "^15.6.0",

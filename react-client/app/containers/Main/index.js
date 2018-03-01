@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from 'react-redux'
 import BlockchainTable from "./BlockchainTable";
 import { Button, Col, Input, Row } from "antd";
-import { addBlock } from "./actions";
+import { addBlock, loadBlocks } from "./actions";
 import { DIFFICULTY } from "./constants";
 
 class Main extends React.Component {
@@ -12,6 +12,10 @@ class Main extends React.Component {
     this.state = {
       input: undefined,
     }
+  }
+
+  componentDidMount() {
+    this.props.onLoadBlocks();
   }
 
   handleInputChange = (e) => {
@@ -36,7 +40,7 @@ class Main extends React.Component {
         </Col>
       </Row>
       <BlockchainTable
-        loading={this.props.addBlockLoading}
+        loading={this.props.blockTableLoading}
         data={this.props.blocks} />
     </div>);
   }
@@ -45,14 +49,15 @@ class Main extends React.Component {
 const mapStateToProps = (state) => {
   return {
     blocks: state.blocks,
-    addBlockLoading: state.addBlockLoading,
+    blockTableLoading: state.blockTableLoading,
     error: state.error,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddBlock: (transaction) => dispatch(addBlock(transaction))
+    onAddBlock: (transaction) => dispatch(addBlock(transaction)),
+    onLoadBlocks: () => dispatch(loadBlocks()),
   }
 };
 

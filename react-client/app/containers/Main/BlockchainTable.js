@@ -2,6 +2,7 @@ import * as React from "react";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 import { Table } from 'antd';
+import { formatFullDate } from '../../utils/date';
 
 export const StyledTable = styled(Table)`
   margin-top: 10px;
@@ -13,7 +14,7 @@ export const StyledTable = styled(Table)`
   }
   thead > tr > th {
     color: white;
-    background-color: #76dd56;    
+    background-color: #76dd56;
   }
   .ant-pagination {
     display: block;
@@ -52,6 +53,7 @@ class BlockchainTable extends React.Component {
           title: 'DATE',
           dataIndex: 'date',
           key: 'date',
+          render: (date) => formatFullDate(date)
         }, {
           title: 'HASH',
           dataIndex: 'hash',
