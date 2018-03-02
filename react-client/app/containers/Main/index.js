@@ -1,5 +1,6 @@
 import * as React from "react";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import BlockchainTable from "./BlockchainTable";
 import { Button, Col, Input, Row } from "antd";
 import { addBlock, loadBlocks } from "./actions";
@@ -45,6 +46,14 @@ class Main extends React.Component {
     </div>);
   }
 }
+
+Main.propTypes = {
+  blocks: PropTypes.array,
+  blockTableLoading: PropTypes.bool,
+  error: PropTypes.string,
+  onAddBlock: PropTypes.func,
+  onLoadBlock: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return {

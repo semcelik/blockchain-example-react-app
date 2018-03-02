@@ -1,5 +1,5 @@
-import { put, takeEvery, all, select, call } from 'redux-saga/effects'
-import { ADD_BLOCK, LOAD_BLOCKS } from "./constants";
+import { put, takeEvery, all, call } from 'redux-saga/effects'
+import { ADD_BLOCK, DIFFICULTY, LOAD_BLOCKS } from "./constants";
 import { blockAdded, blocksLoaded, loadBlocks, setLoading } from "./actions";
 import { doGetRequest, doPutRequest } from '../../../request';
 
@@ -20,7 +20,7 @@ function* watchLoadBlocks() {
 }
 
 function* addBlock(action) {
-  const res = yield call(doPutRequest, `api/block/add/0000/?data=${action.transaction}`);
+  const res = yield call(doPutRequest, `api/block/add/${DIFFICULTY}/?data=${action.transaction}`);
   yield put(blockAdded());
   yield put(loadBlocks());
 }
