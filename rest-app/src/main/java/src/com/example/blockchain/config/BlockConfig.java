@@ -1,27 +1,22 @@
 package src.com.example.blockchain.config;
 
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import src.com.example.blockchain.repository.BlockRepository;
+import src.com.example.blockchain.service.BlockService;
+import src.com.example.blockchain.service.impl.BlockServiceImpl;
 
 @Configuration
 @CrossOrigin(origins = "*") //todo: config'e taşı her servis için yapmak doğru değil
 public class BlockConfig {
 
   @Autowired
-  private Environment environment;
+  private BlockRepository blockRepository;
 
   @Bean
-  public DataSource dataSource() {
-    DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    dataSource.setDriverClassName(environment.getProperty("db.driver"));
-    dataSource.setUrl(environment.getProperty("spring.datasource.url"));
-    dataSource.setUsername(environment.getProperty("spring.datasource.username"));
-    dataSource.setPassword(environment.getProperty("spring.datasource.password"));
-    return dataSource;
+  public BlockService blockService() {
+    return new BlockServiceImpl(blockRepository);
   }
 }
