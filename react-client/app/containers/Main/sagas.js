@@ -7,7 +7,7 @@ function getBlocksWithKey(res) {
   const blocks = res.data || [];
   return blocks.map((block) => ({
     ...block, key: block.id,
-  }));
+  })).sort((a,b) => b.date - a.date);
 }
 
 function* onloadBlocks() {
