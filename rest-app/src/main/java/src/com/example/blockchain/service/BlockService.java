@@ -79,7 +79,6 @@ public class BlockService {
     Iterable<Block> all = repository.findAll();
     List<Block> blocks = new ArrayList<>();
     all.forEach(blocks::add);
-    //return new Gson().toJson(blocks);
     return ResponseEntity.ok(blocks);
   }
 }
